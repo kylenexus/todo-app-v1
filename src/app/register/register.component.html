@@ -1,7 +1,7 @@
 <form #registerForm="ngForm" (ngSubmit)="SubmitRegistration(regForm)">
-  First Name <input type="text" name="fname" [(ngModel)]="regForm.firstname" /><br>
-  Last Name <input type="text" name="lname" [(ngModel)]="regForm.lastname"/><br>
-  Username<input type="text" name="un" [(ngModel)]="regForm.username" /><br>
-  Password<input type="password" name="pw" autocomplete="off" [(ngModel)]="regForm.password"/><br>
+  <input type="text" name="fname" [(ngModel)]="regForm.firstname" placeholder="First Name" required /><br>
+  <input type="text" name="lname" [(ngModel)]="regForm.lastname" placeholder="Last Name" required /><br>
+  <input type="text" name="un" autocomplete="off" [(ngModel)]="regForm.username" placeholder="Username" required /><br>
+  <input type="password" name="pw" autocomplete="off" [(ngModel)]="regForm.password" placeholder="Password" required /><br>
   <input type="submit" value="submit">
 </form>

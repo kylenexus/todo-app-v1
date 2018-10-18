@@ -1,3 +1,17 @@
-<p>
-  task works!
-</p>
+<form #newTask="ngForm" (ngSubmit)="SubmitNewTask(taskForm)" >
+    <input type="text" name="taskname" [(ngModel)]="taskForm.task1" placeholder="new task" required />
+    <button click>Add Task</button>
+</form>
+<br>
+<table>
+  <tr >
+    <th>Done</th>
+    <th style="width:200px;">Name</th>
+    <th style="width:50px;">Action</th>
+  </tr>
+  <tr *ngFor="let task of tasks">
+    <td align="center"><input type="checkbox" [checked]="task.done" (change)="UpdateTask(task)" /></td>
+    <td><span [ngClass]="isDone(task)">{{ task.task1 }}</span></td>
+    <td><button (click)="DeleteTask(task)">delete</button></td>
+  </tr>
+</table>

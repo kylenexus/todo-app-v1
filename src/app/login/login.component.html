@@ -1,5 +1,7 @@
-<!-- <form>
-  username<input type="text" /><br>
-  password<input type="password" /><br>
+<form #loginForm="ngForm" (ngSubmit)="SubmitLogin(logForm)">
+  <input type="text" name="un"  [(ngModel)]="logForm.username" placeholder="username" required /><br>
+  <input type="password" name="pw" autocomplete="off" [(ngModel)]="logForm.password" placeholder="password" required /><br>
   <button>Login</button>
-</form> -->
+</form>
+<br>
+<div style="color:red">{{ errMessage }}</div>

@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ApiBaseUrlService } from './api-base-url.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.IsAuthenticated());
 
-  constructor() { }
+  get isLoggedIn(){
+    return this.loggedIn.asObservable();
+  }
 
-  UserLogin(username,password){
-    console.log("login:" + username);
+  constructor(private http:HttpClient,private apiBaseUrl:ApiBaseUrlService) { }
+
+  UserLogin(login){
+    return this.http.post(this.apiBaseUrl.GetBaseUrl() + "login", login);
   }
 
   UserLogout(){
     localStorage.clear();
-    console.log("logout");
   }
 
   IsAuthenticated():boolean{
@@ -30,6 +37,10 @@ export class AuthService {
       return localStorage.getItem("token");
     else
       return null;
+  }
+
+  SetToken(token){
+    localStorage.setItem("token", token);
   }
 
 }

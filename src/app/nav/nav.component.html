@@ -1,6 +1,7 @@
-<a [routerLink]="['/']" routerLinkActive="router-link-active" >Home</a> |
-<a [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a> |
-<a [routerLink]="['/register']" routerLinkActive="router-link-active">Register</a>
+<a *ngIf="isLoggedIn()" [routerLink]="['/task']" routerLinkActive="router-link-active">Tasks</a> &nbsp;
+<a *ngIf="isLoggedIn()" [routerLink]="['/logout']" routerLinkActive="router-link-active">Logout</a> &nbsp;
+
+<a *ngIf="!isLoggedIn()" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a> &nbsp;
+<a *ngIf="!isLoggedIn()" [routerLink]="['/register']" routerLinkActive="router-link-active">Register</a> &nbsp;
 <hr>
-<br>
 <router-outlet></router-outlet>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../_services/register.service';
 import { Router } from '@angular/router';
-import { IUser } from '../_models/IUser';
+import { User } from '../_models/User';
 
 @Component({
   selector: 'app-register',
@@ -16,23 +16,27 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  regForm: IUser = new IUser();
+  regForm: User = new User();
 
-  SubmitRegistration(passedData){
-    console.log(passedData);
+  SubmitRegistration(postedUser){
+    console.log(postedUser);
 
-    // this.registerService.CreateUser(passedData).subscribe(
-    //   (success)=>{
-    //     console.log("registration successfull");
-    //     this.router.navigate(['login']);
-    //   },
-    //   (error)=>{
-    //     console.log(error.value);
-    //   }
-    // );
+    this.registerService.CreateUser(postedUser).subscribe(
+      //success
+      (data)=>{
+        console.log("registration successful");
+        this.router.navigate(['login']);
+        this.ClearForm();
+      },
+      //error
+      (error)=>{
+        console.log("error:" + error.status + " - " + error.statusText);
+        this.ClearForm();
+      }
+    );
 
-    this.ClearForm();
-    this.router.navigate(['login']);
+    // this.ClearForm();
+    // this.router.navigate(['login']);
   }
 
   ClearForm(){
