@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.authService.UserLogin(postedData).subscribe(
       //success
       (data: LoggedUser)=>{
-        console.log(data.token);
+        //console.log(data.token);
         this.authService.SetToken(data.token);
         this.ClearForm();
         this.router.navigate(['task']);
